@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery实时监测屏幕</title>
+	<script src="jquery-3.3.1.js"></script>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		ul li{
+			list-style:none;
+			float:left;
+			padding:5px 10px;
+			border:1px solid #ddd;
+			border-radius:5px;
+			margin:10px;
+		}
+		.clear:after{
+			display:block;
+			content:"";
+			clear:both
+		}
+	</style>
+ </head>
+ <body>
+ 	<div class="pagination">
+		<ul class="page clear">
+			<li>a</li>
+			<li>b</li>
+			<li>c</li>
+			<li>d</li>
+			<li>e</li>
+			<li>f</li>
+		</ul>
+	</div>
+	改变li数量<input type="text" value="10"><button onclick="getValue()">生成</button>	
+ 	<script>
+		//实时监测屏幕的大小是否被缩放
+		$(window).resize(function () {          //当浏览器大小变化时
+			console.log('$(window).width()：'+$(window).width());          //浏览器时下窗口可视区域高度
+			console.log('$(document).width()：'+$(document).width());        //浏览器时下窗口文档的高度
+			console.log('$(document.body).width()：'+$(document.body).width());   //浏览器时下窗口文档body的高度
+			console.log('$(document.body).outerWidth(true)：'+$(document.body).outerWidth(true)); //浏览器时下窗口文档body的总高度 包括border padding margin
+			console.log('**********************************')
+		});
+		console.log($('.pagination ul li'));
+		console.log($('.pagination ul li').length);
+		function getValue(){
+			var pageTotal = parseInt($('input').val());
+			console.log(pageTotal);
+			for(var i = 1; i++; i < pageTotal){
+				$('.page').append('<li>'+ i +'</li>')
+			}
+		}
+	</script>
+ </body>
+</html>
